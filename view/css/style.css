@@ -1,0 +1,91 @@
+body{
+	width: 80%;
+	margin: auto;
+	margin-top: 0;
+}
+
+#connexion{
+    width: 500px;
+    height: 150px;
+    border: 1px solid black;
+    border-radius: 5px;
+    margin: auto;  
+    margin-top: 15em;
+}
+
+.form-connexion{
+	margin: auto;
+
+	height: 100%;
+	width: 100%;
+	text-align: center;
+	padding-top: 20px;
+	box-sizing: border-box;
+}
+
+.form-connexion label{
+	display: inline-block;
+	text-align: left;
+	width: 100px;
+	margin-bottom: 2px;	
+}
+
+.form-connexion input{
+	margin-bottom: 2px;
+	width: 20em;
+	height: 1.5em;
+}
+
+.btn-form-connexion{
+	margin-top: 5px;
+	width: 10em;
+	border-radius: 5px 5px 5px 5px;
+}
+.btn-deco{
+	border-radius: 5px;
+	display: inline;
+}
+
+.alert{
+	color: red;
+	font-size: 5em;
+	text-align: center;
+}
+
+.form-choix-mois{
+	margin-top: 2em;
+	margin-bottom: 2em;
+
+}
+
+.donnees-afficher div{
+	display: inline-block;
+	font: 10px sans-serif;
+  	background-color: steelblue;
+  	text-align: right;
+  	padding: 3px;
+  	margin: 1px;
+  	color: white;
+
+}
+
+.donnees-afficher{
+	height: 30em;
+	border: 1px solid black;
+	padding: 3px;
+	overflow: auto;
+
+	/*-moz-column-count:2;
+	-webkit-column-count:2;
+	column-count:2;
+	-webkit-column-rule-width:1px;
+	-moz-column-rule-width:1px;
+	column-rule-width:1px;
+	*/
+}
+
+.form-ajout-chiffre{
+	margin-top: 2em;
+	margin-bottom: 2em;
+}
+
