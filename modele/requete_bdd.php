@@ -1,5 +1,6 @@
 <?php
-include_once ('Connexion_Bdd.class.php');
+include_once('Connexion_Bdd.class.php');
+
 function control_connexion()
 {
 
@@ -33,4 +34,33 @@ function afficher_tableau_donnees($choix_mois,$choix_annee)
 
 
     return $tab;
+}
+
+function ajout_nbr_journalier($nombre_ajoute,$date_ajout)
+{
+    // connexion a la base de données et requete ou l'on demande de recuperer toute les données du mois
+    $bdd = Connexion::getInstance();
+
+    //vérification des date présente dans la bdd
+            $st3 = $bdd->query('SELECT date_ajout FROM donnees WHERE date_ajout = \''.$_POST['date-ajout'].'\'');
+            $tab_date = $st3->fetch();
+
+    // requète pour inserer dans la bdd les données saisi si date présente update sinon ajout
+
+     if ($date_ajout === $tab_date['date_ajout']){
+                $st = $bdd->prepare('UPDATE donnees SET nbr_journalier = :nbr_journalier WHERE date_ajout = :date_ajout;');
+
+                $st->execute(array(
+                    'nbr_journalier' => $nombre_ajoute,
+                    'date_ajout' => $date_ajout,
+                ));
+            }else{
+                $st = $bdd->prepare('INSERT INTO donnees(nbr_journalier, date_ajout) VALUES (:nbr_journalier, :date_ajout);');
+
+                $st->execute(array(
+                    'nbr_journalier' => $nombre_ajoute,
+                    'date_ajout' => $date_ajout,
+                ));
+            };
+
 }

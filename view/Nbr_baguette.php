@@ -1,8 +1,8 @@
 <?php
-    require_once('parts/header.php');
-    include_once('../modele/requete_bdd.php');
-    include_once ('../controler/controleur.php');
+    include('parts/header.php');
+    require_once('../controler/controleur.php');
 
+    
 	echo "Bonjour " . $_SESSION['login']." <form method=post action=../index.php class='btn-deco'><input type='submit' value='déconnexion' class='btn-deco'></form>";
 ?>
 <h1 class="titre_tableau" style="text-align: center">Récapitulatif nombre de baguette</h1>
@@ -38,7 +38,6 @@
     <input type="submit" value="choisir">
 </form>
 
-
     <!-- Formulaire d'ajout de nbr baguette -->
 <form method="post" class="form-ajout-chiffre">
     <label>Ajout chiffre journalier :</label>
@@ -63,41 +62,8 @@
         }
     ?>
 </div>
+    <?php echo $erreur_entree; ?>
 	
-<?php
-
-        // si le formulaire ajout nbr est bien rempli
-	if (isset($_POST['ajout']) && isset($_POST['date-ajout']) && !empty($_POST['ajout']) && !empty($_POST['date-ajout']) && preg_match("#^[0-9]{0,5}$#",$_POST['ajout'])) {
-
-            //vérification des date présente dans la bdd
-            $st3 = $bdd->query('SELECT date_ajout FROM donnees WHERE date_ajout = \''.$_POST['date-ajout'].'\'');
-            $tab_date = $st3->fetch();
-
-                // requète pour inserer dans la bdd les données saisi si date présente update sinon ajout
-            if ($_POST['date-ajout'] === $tab_date['date_ajout']){
-                $st = $bdd->prepare('UPDATE donnees SET nbr_journalier = :nbr_journalier WHERE date_ajout = :date_ajout;');
-
-                $st->execute(array(
-                    'nbr_journalier' => $_POST['ajout'],
-                    'date_ajout' => $_POST['date-ajout'],
-                ));
-            }else{
-                $st = $bdd->prepare('INSERT INTO donnees(nbr_journalier, date_ajout) VALUES (:nbr_journalier, :date_ajout);');
-
-                $st->execute(array(
-                    'nbr_journalier' => $_POST['ajout'],
-                    'date_ajout' => $_POST['date-ajout'],
-                ));
-            };
-
-            //redirection sur graphique du mois qui as eté modifié.
-		$date = explode('/',$_POST['date-ajout']);
-		header('Location: Nbr_baguette.php?choix-mois=%2F'.$date[1].'%2F&choix-annee='.$date[2]);
-
-	}elseif (isset($_POST['ajout']) && isset($_POST['date-ajout']) && !empty($_POST['ajout']) && !empty($_POST['date-ajout']) && preg_match("#[a-zA-Z]#",$_POST['ajout'])){
-	    echo "MERCI DE RENTRER UN NOMBRE VALIDE !! ";
-    };
-?>
 
     <!-- scripte pour le calendrier -->
 <script type="text/javascript">

@@ -1,7 +1,8 @@
 <?php 
-require_once('view\parts\header.php');
+require_once('view/parts/header.php');
+require_once('controler/controleur.php');
 ?>
-            <div id="connexion" >
+            <div id="connexion">
                     <form method="post" class="form-connexion">
                         <label for="login">Login:</label>
                         <input type="text" name="login">
@@ -15,8 +16,7 @@ require_once('view\parts\header.php');
                         <button type="submit" class="btn-form-connexion">Connexion</button>
                     </form>
             </div>
-
 <?php
-require_once('view\parts\footer.php');
-include_once('controler\controleur.php');
+
+require_once('view/parts/footer.php');
 ?>
