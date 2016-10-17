@@ -16,6 +16,7 @@ if (isset($_POST['login']) && isset($_POST['mot_de_passe']) && isset($_POST['cod
     $code_secu = $_POST['code_securite'];
 
     if($login === $donnees['login'] && $mdp === $donnees['mdp'] && $code_secu === $donnees['naissance'] ){
+        
         $_SESSION['login'] = $donnees['login'];
         header('Location: view\Nbr_baguette.php?choix-mois=%2F'.date('m').'%2F&choix-annee='.date('Y'));
     }else{
@@ -48,5 +49,5 @@ if (isset($_POST['ajout']) && isset($_POST['date-ajout']) && !empty($_POST['ajou
     header('Location: Nbr_baguette.php?choix-mois=%2F'.$date[1].'%2F&choix-annee='.$date[2]);
 
 }elseif (isset($_POST['ajout']) && isset($_POST['date-ajout']) && !empty($_POST['ajout']) && !empty($_POST['date-ajout']) && preg_match("#[a-zA-Z]#",$_POST['ajout'])){
-        $erreur_entree = "<p>MERCI DE RENTRER UN NOMBRE VALIDE !!</p>";
+        $_SESSION['flash'] = "<p>MERCI DE RENTRER UN NOMBRE VALIDE !!</p>";
 };

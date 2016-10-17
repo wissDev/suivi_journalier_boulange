@@ -62,8 +62,15 @@
         }
     ?>
 </div>
-    <?php echo $erreur_entree; ?>
-	
+    <?php 
+
+    if (isset($_SESSION['flash']) != "") {
+        echo $_SESSION['flash'];
+        unset($_SESSION['flash']);
+    };    
+      
+    ?>
+    
 
     <!-- scripte pour le calendrier -->
 <script type="text/javascript">
